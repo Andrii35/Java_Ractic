@@ -1,8 +1,8 @@
 package Compete_Car;
 
 public class Handlebar {
-int radius;
-String type;
+private int radius;
+private String type;
 public Handlebar() {
 	radius=20;
 	type="usual";
@@ -24,6 +24,12 @@ public String getType() {
 public void setType(String type) {
 	this.type = type;
 }
+public void changeHanlebar(int rad, String typ) {
+	radius=rad;
+	type=typ;
+}
 
-
+public String toString() {
+	return "Handlebar: \n[Radius: "+radius+"\nType: "+type;
+}
 }
