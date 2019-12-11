@@ -79,5 +79,8 @@ public class Student {
     	System.out.println("Kourse: "+kours+ "\nGroup: "+group);
     }
     
-	
+	@Override
+	public String toString() {
+		return name;
+	}
 }
