@@ -50,7 +50,7 @@ public void setPs(int ps) {
 }
 @Override
 public String toString() {
-	return "Car [Carbody=" + cb + ",\n Handlebar=" + hb + ",\n weels=" + wells + ",\n color=" + color + ",\n ps=" + ps + "]";
+	return "Car [Carbody: " + cb + ",\n Handlebar: " + hb + ",\n weels: " + wells + ",\n color: " + color + ",\n ps: " + ps + "]";
 }
 public void addPs() {
 	ps+=10;
