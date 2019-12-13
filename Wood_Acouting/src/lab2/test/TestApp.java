@@ -34,8 +34,11 @@ public class TestApp {
 //			System.out.println(w+" exist!");
 //		}
 		
-		TestApp app=new TestApp();
-		app.startApp();
+//		TestApp app=new TestApp();
+//		app.startApp();
+		
+		TestByConsole app_console=new TestByConsole();
+		app_console.consoleTest();
 
 	}
 
