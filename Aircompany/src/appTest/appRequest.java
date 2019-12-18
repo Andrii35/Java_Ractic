@@ -3,27 +3,33 @@ import java.util.Scanner;
 import FlayTyps.*;
 import Flayers.*;
 import java.util.Arrays;
-public class appRequest {
+public class AppRequest {
 
-	SmallFlyear smallf=new SmallFlyear();
-	MiddleFlayer middlef=new MiddleFlayer();
-	BigFlayer bigf=new BigFlayer();
-	private Flayer[] addFlayer(Flayer obj,Flayer[]arr) {
-		if(obj.getCount()==arr.length||obj.getCount()>arr.length)
+	
+	private void addFlayer(Flayer obj,Flayer[]arr) {
+		
+		if(obj.getCount()==arr.length) {
 		arr=Arrays.copyOf(arr, arr.length+arr.length/2);
+		
+		}
+		arr[obj.getCount()-1]=obj;
+		
+				
 	}
+	
 	public double generalWeight(Flayer obj) {
-		double weight=0;
-		weight+=obj.getMaxLoad();
-		return weight;
+		
+		return obj.getMaxLoad();
 	}
+	
 	public int generalPlaces(Flayer obj) {
-		int places=0;
-		places+=obj.getPlaces();
-		return places;
+		
+		return obj.getPlaces();
 	}
-	public Flayer[]sortByFlyWeight(Flayer []obj){
-		Flayer temp=new Flayer();
+	
+	
+	private Flayer[]sortByFlyWeight(Flayer []obj){
+		Flayer temp;
 		boolean isSorted=true;
 		while(!isSorted) {
             isSorted = true;
@@ -40,10 +46,12 @@ public class appRequest {
 		
 	   }
 	
-	public Flayer findBySpritUse(double useSprit, Flayer[]obj) {
+	private Flayer findBySpritUse(int length, int spritVolume, Flayer[]obj) {
+		
 		int index=obj.length;
-		for(int i=0;i<obj.length;i++) {
-			if(obj[i].getUseSprit()==useSprit||obj[i].getUseSprit()<useSprit) {
+		int count=obj[0].getCount();
+		for(int i=0;i<count;i++) {
+			if((spritVolume/obj[i].getUseSprit())>length) {
 				index=i;
 			}
 		}
@@ -52,7 +60,7 @@ public class appRequest {
 		else
 			return obj[index];
 	   }
-	public void appConsole() {
+	public void appConsole(Flayer[]obj) {
 		int choise=10;
 		Scanner in=new Scanner(System.in);
 		Flayer temp;
@@ -84,7 +92,45 @@ public class appRequest {
 				}else {
 					temp=new BigFlayer(type,tank,places,useSprit,maxLoad);
 				}
+				addFlayer(temp,obj);
+				break;
+			}
+			case 2:{
+				int volume=0;
+				int count=obj[0].getCount();
+				for(int i=0;i<count;i++) {
+					volume+=generalPlaces(obj[i]);
+				}
 				
+				System.out.println("General volume: "+volume+" places");
+				break;
+				
+			}
+			case 3:{
+				int weight=0;
+				int count=obj[0].getCount();
+				for(int i=0;i<count;i++) {
+					weight+=generalWeight(obj[i]);
+					
+				}
+					
+				System.out.println("General volume: "+weight+" places");
+				break;
+			}
+			case 4:{
+				obj=sortByFlyWeight(obj);
+				break;
+			}
+			case 5:{
+				int length=0;
+				int spritVolume=0;
+				System.out.println("Enter a length of flay: ");
+				length=in.nextInt();
+				System.out.println("Enter a sprit volume witch you have: ");
+				spritVolume=in.nextInt();
+				Flayer temp2;
+				temp2=findBySpritUse(length,spritVolume,obj);
+				System.out.println(temp2);
 			}
 			}
 		}

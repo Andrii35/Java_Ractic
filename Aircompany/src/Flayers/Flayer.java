@@ -3,7 +3,7 @@ package Flayers;
 //Посчитать общую вместимость и грузоподъемность. Провести сортировку
 //самолетов компании по дальности полета. Найти самолет в компании, со-
 //ответствующий заданному диапазону параметров потребления горючего.
-public class Flayer {
+public abstract class Flayer {
 
 	String type;
 	int tank;
@@ -60,6 +60,11 @@ public class Flayer {
 	}
 	public int getCount() {
 		return count;
+	}
+	@Override
+	public String toString() {
+		return "Type: " + type + "\ntank: " + tank + ",\nplaces=" + places + "\nuseSprit=" + useSprit
+				+ "\nmaxLoad=" + maxLoad;
 	}
 	
 }
