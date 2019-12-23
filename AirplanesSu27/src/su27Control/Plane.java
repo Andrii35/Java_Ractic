@@ -1,6 +1,6 @@
 package su27Control;
 
-public abstract class Plane {
+public abstract class Plane extends Control {
 
 	double length;
 	double bright;
