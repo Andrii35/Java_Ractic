@@ -36,24 +36,20 @@ public class LPR19_Task1 {
 			int count=0;
 			int max=0;
 			String []temp_string=word.split(" ");
-			temp=word.split(" ").toString();
-			System.out.println(temp);
-			System.out.println(word.split(" ").length);
-			for(String el:word.split(" ")) {
-				System.out.println(el);
-			}
+			
 			for(int i=0;i<temp_string.length;i++) {
 				for(int j=0;j<temp_string.length;j++) {
 					if(temp_string[i].equalsIgnoreCase(temp_string[j])) {
 						count++;
-						System.out.println(temp_string[i]);
-						System.out.println(temp_string[j]);
-						System.out.println(count);
+						
 					}		
 				}
 					if(max<count) {
 						max=count;
 						temp=temp_string[i];
+					}
+					else if(count==1){
+						temp="Sentense haven't heer equels words";
 					}
 					count=0;
 				}
@@ -61,6 +57,10 @@ public class LPR19_Task1 {
 			return temp;
 		}
 		
-		
+		public int countWords(String word) {
+			
+			int count=word.split(" ").length;
+			return count;
+		}
 	
 }
