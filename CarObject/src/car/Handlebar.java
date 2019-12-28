@@ -10,7 +10,7 @@ public class Handlebar {
 	
 	public Handlebar() {
 
-		diametr=200;
+		diametr=randomDiametr();
 		material=randomMaterial();
 	}
 	public Handlebar(double diametr, String material) {
@@ -18,16 +18,16 @@ public class Handlebar {
 		this.diametr = diametr;
 		this.material = material;
 	}
-	private double getDiametr() {
+	public double getDiametr() {
 		return diametr;
 	}
-	private void setDiametr(double diametr) {
+	public void setDiametr(double diametr) {
 		this.diametr = diametr;
 	}
-	private String getMaterial() {
+	public String getMaterial() {
 		return material;
 	}
-	private void setMaterial(String material) {
+	public void setMaterial(String material) {
 		this.material = material;
 	}
 	@Override
@@ -37,7 +37,10 @@ public class Handlebar {
 	
 	public String randomMaterial() {
 		Random rnd=new Random();
-		Material mat = null;
-		return mat.values()[rnd.nextInt(2)].toString();
+		return Material.values()[rnd.nextInt(2)].toString();
+	}
+	public double randomDiametr() {
+		Random rnd=new Random();
+		return (200.0+rnd.nextDouble()+301);
 	}
 }

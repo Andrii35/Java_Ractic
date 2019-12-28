@@ -1,5 +1,7 @@
 package car;
 
+import java.util.Random;
+
 public class Car {
 
 	private int ps;
@@ -8,8 +10,8 @@ public class Car {
 	private Handlebar hb;
 	
 	public Car() {
-		ps=20;
-		year=0;
+		ps=randomPSAndYear(40,540);
+		year=randomPSAndYear(2000,2019);
 		engeene=new Engeene();
 		hb=new Handlebar();
 	}
@@ -20,33 +22,37 @@ public class Car {
 		this.engeene = engeene;
 		this.hb = hb;
 	}
-	private int getPs() {
+	public int getPs() {
 		return ps;
 	}
-	private void setPs(int ps) {
+	public void setPs(int ps) {
 		this.ps = ps;
 	}
-	private int getYear() {
+	public int getYear() {
 		return year;
 	}
-	private void setYear(int year) {
+	public void setYear(int year) {
 		this.year = year;
 	}
-	private Engeene getEngeene() {
+	public Engeene getEngeene() {
 		return engeene;
 	}
-	private void setEngeene(Engeene engeene) {
+	public void setEngeene(Engeene engeene) {
 		this.engeene = engeene;
 	}
-	private Handlebar getHb() {
+	public Handlebar getHb() {
 		return hb;
 	}
-	private void setHb(Handlebar hb) {
+	public void setHb(Handlebar hb) {
 		this.hb = hb;
 	}
-	
-	
-	
-	
-	
+	@Override
+	public String toString() {
+		return "\nCar have " + ps +" ps"+ ",\nyear:" + year + "\n"+engeene.toString()+" "+hb.toString();
+	}
+		
+	public int randomPSAndYear(int min,int max) {
+		Random rnd=new Random();
+		return (min+rnd.nextInt(max-min+1));
+		}
 }
