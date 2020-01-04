@@ -65,7 +65,7 @@ public class Deputat extends Human  {
 	
 	@Override
 	public String toString() {
-		return "Name: " + name + "\nSurname: " + surname + "\nAge: " + age + "\ncoruptions: " + coruptions
+		return "\nName: " + name + "\nSurname: " + surname + "\nAge: " + age + "\ncoruptions: " + coruptions
 				+ "\ncoruptMoney: " + coruptMoney+super.toString();
 	}
 	public void giveCoruptMoney() {

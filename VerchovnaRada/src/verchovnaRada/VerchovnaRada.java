@@ -21,8 +21,12 @@ public class VerchovnaRada {
 	public void addFraction(Fraction obj) {
 		fractions.add(obj);
 	}
-	public void removeFraction(Fraction obj) {
-		fractions.remove(obj);
+	public void removeFraction(String obj) {
+		for(int i=0;i<fractions.size();i++)
+			if(obj.equals(fractions.get(i).getName())) {
+				fractions.remove(fractions.get(i));
+			}
+		
 	}
 	public void showAllFractions() {
 		for(Fraction item:fractions) {
@@ -35,32 +39,37 @@ public class VerchovnaRada {
 			System.out.println(item);
 		}
 	}
-	public void addDeputatToFraction(Fraction fr, Deputat dep) {
+	public void addDeputatToFraction(String fr, Deputat dep) {
 		for(Fraction item:fractions) {
-			if(item.getName()==fr.getName())
+			if(item.getName()==fr)
 		    item.addDeputat(dep);
 		}
 	}
 	
-	public void removeDeputatFromFraction(Deputat obj) {
+	public void removeDeputatFromFraction(String depName) {
 		for(int i=0;i<fractions.size();i++) 
 		{
 			for(int j=0;j<fractions.get(i).getFraction().size();j++) {
-				if(fractions.get(i).getFraction().get(j)==obj) {
-					fractions.get(i).getFraction().remove(obj);
+				if(depName.equals(fractions.get(i).getFraction().get(j).getName())) {
+					fractions.get(i).removeDeputat(fractions.get(i).getFraction().get(j));
 				}
 			}
 		}
 	}
-	public void showAllCoruptionersInFraction(Fraction fr) {
+	public void showAllCoruptionersInFraction(String fr) {
 		for(Fraction item:fractions) {
-			if(item.getName()==fr.getName())
+			if(fr.equals(item.getName())) {
 		    item.showCoruptDeputats();
+		    }
 		}
 	}
-	public void showBiggestCoruptionerInFraction(Fraction fr) {
+	@Override
+	public String toString() {
+		return fractions.toString();
+	}
+	public void showBiggestCoruptionerInFraction(String fr) {
 		for(Fraction item:fractions) {
-			if(item.getName()==fr.getName())
+			if(fr.equals(item.getName()))
 		    item.showBiggerCoruptioner();
 		}
 	}
