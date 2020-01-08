@@ -12,10 +12,10 @@ public final class Person {
 		this.name=name;
 		this.age=age;
 	}
-	private String getName() {
+	public String getName() {
 		return name;
 	}
-	private int getAge() {
+	public int getAge() {
 		return age;
 	}
 	@Override
