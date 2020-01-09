@@ -7,10 +7,10 @@ public class Animal {
 	public Animal() {
 		type="none";
 		name="none";
-		
+
 	}
 	public Animal(String type, String name) {
-		
+
 		this.type = type;
 		this.name = name;
 	}
@@ -59,6 +59,4 @@ public class Animal {
 	public String toString() {
 		return "Animal [type=" + type + ", name=" + name + "]";
 	}
-	
-	
 }
