@@ -1,11 +1,24 @@
 package zooClub;
+import java.io.EOFException;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
 
 
 
@@ -142,11 +155,65 @@ public class AppZooClub {
 			
 		}
 	}
-	public static void main(String[] args) throws IllegalArgumentException, IllegalAccessException, SecurityException, ReflectiveOperationException {
+	public static void main(String[] args) throws IllegalArgumentException, IllegalAccessException, SecurityException, ReflectiveOperationException, FileNotFoundException, IOException {
 		
-		ZooClub zooClub=new ZooClub();
-		appConsole(zooClub);
-		reflection();
+//		ZooClub zooClub=new ZooClub();
+//		appConsole(zooClub);
+//		reflection();
+		ArrayList<Animal> animal=new ArrayList<>();
+		animal.add(new Animal("Tiger","Sherchan"));
+		animal.add(new Animal("Cat","Barsik"));
+		
+		Map<Person,ArrayList<Animal>> first=new HashMap<>();
+		first.put(new Person("Vasja", 23), animal);
+		first.put(new Person("Kolja",34), animal);
+		
+	 // ставорення папки
+		File dir=new File("test");
+		dir.mkdir();
+		//  перевірка чи існує директорія
+		if(dir.isDirectory()) {
+			File[] listFiles = dir.listFiles();
+			for(File elem:listFiles) {
+				System.out.println(elem);
+			}
+		}
+		try(ObjectOutputStream outMapPerson=new ObjectOutputStream(Files.newOutputStream(Paths.get("zooclub.txt")))){
+			outMapPerson.writeObject(first);
+		}
+		catch(EOFException e) {
+			System.out.println(e);
+			
+		}catch(IOException e) {
+			System.out.println(e);
+		}
+		
+		
+		try(ObjectInputStream inMapClub=new ObjectInputStream(Files.newInputStream(Paths.get("zooclub.txt")))) {
+			
+		
+			Map<Person,ArrayList<Animal>> tempMap=new HashMap<>();
+			tempMap=(HashMap)inMapClub.readObject();
+			
+			Set<Person> person = tempMap.keySet();
+			for(Person el:person) {
+				System.out.println(el.getName());
+			}
+			
+		
+		}
+		
+		catch(EOFException e) {
+			e.getStackTrace();
+		}
+		catch(ClassNotFoundException e) {
+			e.getException();
+		}
+		catch(IOException e) {
+			System.out.println(e);
+		}
+		
+		
 
 	}
 

@@ -11,6 +11,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.NavigableMap;
+import java.util.TreeMap;
 
 /**
  * Class ZooClub create object zoo club with diferent funcyions
@@ -24,18 +26,18 @@ public class ZooClub {
 	/**
 	 * Field of map 
 	 */
-	private Map<Person,List<Animal>>map;
+	private NavigableMap<Person,List<Animal>>map;
 	/**
 	 * default constructor for creating Hashmap
 	 */
 	public ZooClub() {
-		map=new HashMap<Person,List<Animal>>();
+		map=new TreeMap<Person,List<Animal>>();
 	}
 	/**
 	 * Constructor became created map
 	 * @param map
 	 */
-	public ZooClub(Map<Person, List<Animal>> map) {
+	public ZooClub(NavigableMap<Person, List<Animal>> map) {
 
 		this.map = map;
 	}
@@ -50,7 +52,7 @@ public class ZooClub {
 	 * Method become created map
 	 * @param map
 	 */
-	public void setMap(Map<Person, List<Animal>> map) {
+	public void setMap(NavigableMap<Person, List<Animal>> map) {
 		this.map = map;
 	}
 	/**

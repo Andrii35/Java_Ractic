@@ -1,6 +1,8 @@
 package zooClub;
 
-public final class Person {
+import java.io.Serializable;
+
+public final class Person implements Serializable{
 	private final String name;
 	private final int age;
 	

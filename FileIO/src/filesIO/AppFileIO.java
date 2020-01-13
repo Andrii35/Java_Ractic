@@ -10,6 +10,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.net.URI;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Formatter;
 import java.util.List;
@@ -43,29 +46,65 @@ public class AppFileIO {
 				System.out.println(s);
 			}
 		}
-		File nameFile=new File("D://ListStudent.txt");
-		try(Formatter formater=new Formatter(nameFile)){
-		for(Student stud:listST) {
-			formater.format("%s is %d years %n", stud.getName(),stud.getAge());
-		}
-		}
-	
 		
-		try(ObjectOutputStream fileStudent=new ObjectOutputStream(new FileOutputStream(nameFile))){
-			
-				fileStudent.writeObject(listST);
-			
-		}
+		File testdir=new File("D:/testdir");
+		testdir.mkdir();
+	    File nameFile=new File(testdir.getAbsolutePath()+"/"+"Students.txt");
+	    System.out.println(nameFile.getPath());// повний шлях до файлу
+	    System.out.println(nameFile.getParent());// шлях до файлу
+	    
+	    nameFile.createNewFile();
+	    
+//		try(Formatter formater=new Formatter(nameFile)){
+//		for(Student stud:listST) {
+//			formater.format("%s is %d years %n", stud.getName(),stud.getAge());
+//		}
+//		}
+//	
+//		
+//		try(ObjectOutputStream fileStudent=new ObjectOutputStream(new FileOutputStream(nameFile))){
+//			
+//			
+//				fileStudent.writeObject(listST);
+//			
+//		}
+//		
+//		
+//		
+//		try(ObjectInputStream inStudent=new ObjectInputStream(new FileInputStream(nameFile))){
+//			List<Student>temp=new ArrayList<Student>();
+//			temp=(ArrayList<Student>)inStudent.readObject();
+//
+//			for(Student stu:temp) {
+//				System.out.println(stu);
+//			}
+//		}
 		
-		try(ObjectInputStream inStudent=new ObjectInputStream(new FileInputStream(nameFile))){
-			List<Student>temp=new ArrayList<Student>();
-			temp=(ArrayList<Student>)inStudent.readObject();
-
-			for(Student stu:temp) {
-				System.out.println(stu);
-			}
-		}
 		
+//		List<Student>temp=new ArrayList<Student>();
+//		try(ObjectInputStream inStudent=new ObjectInputStream( Files.newInputStream(Paths.get("D://ListStudent.txt")))){
+//			
+//			//temp=(ArrayList<Student>)inStudent.readObject();
+//			
+//			while(true) {
+//				Student st5=(Student)inStudent.readObject();
+//				temp.add(st5);
+//			}
+//			
+//						
+//		}
+//		catch(EOFException e) {
+//			e.getStackTrace();
+//		}
+//		catch(ClassNotFoundException e) {
+//			e.getException();
+//		}
+//		catch(IOException e) {
+//			System.out.println(e);
+//		}
+//		for(Student stu:temp) {
+//			System.out.println(stu);
+//		}
 
 }
 	
