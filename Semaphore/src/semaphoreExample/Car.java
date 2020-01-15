@@ -19,9 +19,12 @@ public class Car extends Thread{
 
 		place.usingPlace();
 		} catch (InterruptedException e) {
-		System.out.println("Car #" + this.getId() + " lost ->"
+		System.out.println("Car #" + this.getId() + " car move to other parking ->"
 		+ e.getMessage());
-		} finally {
+		} catch(NullPointerException e) {
+			System.out.println("Can't exists");
+		}
+		finally {
 		if (place != null) {
 		reading = false;
 		System.out.println("Place for Car #" + this.getId() + " : "
